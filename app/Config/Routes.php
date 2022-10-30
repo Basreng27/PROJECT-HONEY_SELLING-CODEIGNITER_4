@@ -25,12 +25,19 @@ $routes->get('/admin-madu', 'Admin\Admins::index');
 $routes->get('/admin-product', 'Admin\Admins::product');
 $routes->get('/admin-review', 'Admin\Admins::review');
 $routes->get('/admin-admin', 'Admin\Admins::admin');
+// product
+$routes->post('/tambah-product', 'Admin\Product::prosesTambahProduct');
+$routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
+$routes->delete('/delete-product/(:num)', 'Admin\Product::deleteProduct/$1');
 
 // login
 $routes->get('/login', 'Login::index');
+$routes->post('/login-proses', 'Login::prosesLogin');
+$routes->get('/logout', 'Login::logout');
 
 // regist
 $routes->get('/regist', 'Regist::index');
+$routes->post('/regist-proses', 'Regist::prosesRegist');
 
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';

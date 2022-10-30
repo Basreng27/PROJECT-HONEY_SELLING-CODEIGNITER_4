@@ -144,21 +144,21 @@
                                 <li class="nav-item">
                                     <a href="/admin-review" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Review</p>
+                                        <p>Preview</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="/admin-admin" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Admin</p>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </li>
 
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/logout" class="nav-link">
                                 <i class="nav-icon fas fa-ellipsis-h"></i>
                                 <p>
                                     Logout
@@ -252,6 +252,25 @@
                 "responsive": true,
             });
         });
+    </script>
+
+    <script>
+        function prevGambar() {
+            const gambar = document.querySelector('#exampleInputFile');
+            const gambar_label = document.querySelector('.custom-file-label');
+            const gamber_preview = document.querySelector('.img-preview');
+
+            //ganti preview
+            gambar_label.textContent = gambar.files[0].name;
+
+            const file_gambar = new FileReader();
+            file_gambar.readAsDataURL(gambar.files[0]);
+
+            //ganti url
+            file_gambar.onload = function(e) {
+                gamber_preview.src = e.target.result;
+            }
+        }
     </script>
 </body>
 

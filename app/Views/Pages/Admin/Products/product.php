@@ -15,6 +15,18 @@
     </div>
     <!-- /.content-header -->
 
+    <?php if (session()->getFlashdata('berhasil')) { ?>
+        <div class="alert alert-success" role="alert">
+            Product Berhasil ditambahkan
+        </div>
+    <?php } ?>
+
+    <?php if (session()->getFlashdata('berhasilUpdate')) { ?>
+        <div class="alert alert-success" role="alert">
+            Product Berhasil diupdate
+        </div>
+    <?php } ?>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -46,20 +58,23 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Madu Rasa</td>
-                                        <td>gambar disini</td>
-                                        <td>2000</td>
-                                        <td>Madu Enak</td>
-                                        <td>10</td>
-                                        <td>15</td>
-                                        <td>
-                                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-lg">Edit</a>
-                                            ||
-                                            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-keranjang">Delete</a>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1;
+                                    foreach ($data_products as $data) : ?>
+                                        <tr>
+                                            <td><?= $no; ?></td>
+                                            <td><?= $data['nama_madu']; ?></td>
+                                            <td><img src="/products/<?= $data['image'] ?>" class="image" width="80" height="60"></td>
+                                            <td><?= $data['deskripsi']; ?></td>
+                                            <td><?= $data['harga']; ?></td>
+                                            <td><?= $data['sisa']; ?></td>
+                                            <td><?= $data['stock']; ?></td>
+                                            <td>
+                                                <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-edit<?= $data['id_madu']; ?>">Edit</a>
+                                                ||
+                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-danger"> Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>
@@ -83,48 +98,126 @@
                 </button>
             </div>
 
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nama Madu</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
+            <form action="/tambah-product" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Nama Madu</label>
+                        <input type="text" class="form-control <?= ($validation->hasError('nama_madu')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_madu" value="<?= old('nama_madu'); ?>" placeholder="Enter email" autofocus>
+                        <div class="invalid-feedback"><?= $validation->getError('nama_madu'); ?></div>
+                    </div>
 
-                <div class="form-group">
-                    <label>Image</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" id="exampleInputFile" name="image" onchange="prevGambar()">
+                            <div class="invalid-feedback"><?= $validation->getError('image'); ?></div>
+                            <label class="custom-file-label" for="exampleInputFile">Pilih file</label>
+                        </div>
+                        <img src="/products/default.jpg" class="img-thumbnail img-preview">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" rows="3" placeholder="Masukan Deskripsi ..." value="<?= old('deskripsi'); ?>" name="deskripsi"></textarea>
+                        <div class="invalid-feedback"><?= $validation->getError('deskripsi'); ?></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Harga</label>
+                        <input type="number" class="form-control <?= ($validation->hasError('harga')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Harga" value="<?= old('harga'); ?>" name="harga">
+                        <div class="invalid-feedback"><?= $validation->getError('harga'); ?></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Sisa Barang</label>
+                        <input type="number" class="form-control <?= ($validation->hasError('sisa')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Sisa Barang" value="<?= old('sisa'); ?>" name="sisa">
+                        <div class="invalid-feedback"><?= $validation->getError('sisa'); ?></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Stock Barang</label>
+                        <input type="number" class="form-control <?= ($validation->hasError('stock')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Stock Barang" value="<?= old('stock'); ?>" name="stock">
+                        <div class="invalid-feedback"><?= $validation->getError('stock'); ?></div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Deskripsi</label>
-                    <textarea class="form-control" rows="3" placeholder="Masukan Deskripsi ..."></textarea>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Tambahkan</button>
                 </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Harga</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Sisa</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Stock</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                </div>
-            </div>
-
-            <div class="modal-footer justify-content-between">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Tambahkan</button>
-            </div>
+            </form>
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<?php foreach ($data_products as $product) : ?>
+    <div class="modal fade" id="modal-edit<?= $product['id_madu']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="/update-product" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <input type="hidden" name="id_madu" value="<?= $product['id_madu']; ?>">
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nama Madu</label>
+                            <input type="text" class="form-control <?= ($validation->hasError('nama_madu')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" name="nama_madu" value="<?= $product['nama_madu']; ?>" placeholder="Enter email" autofocus>
+                            <div class="invalid-feedback"><?= $validation->getError('nama_madu'); ?></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input <?= ($validation->hasError('image')) ? 'is-invalid' : ''; ?>" id="exampleInputFile" name="image" onchange="prevGambar()">
+                                <input type="hidden" name="image_lama" value="<?= $product['image']; ?>">
+                                <div class="invalid-feedback"><?= $validation->getError('image'); ?></div>
+                                <label class="custom-file-label" for="exampleInputFile">Pilih file untuk diupdate</label>
+                            </div>
+                            <img src="/products/<?= $product['image']; ?>" class="img-thumbnail img-preview">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Deskripsi</label>
+                            <textarea class="form-control <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" rows="3" placeholder="Masukan Deskripsi ..." name="deskripsi"><?= $product['deskripsi']; ?></textarea>
+                            <div class="invalid-feedback"><?= $validation->getError('deskripsi'); ?></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Harga</label>
+                            <input type="number" class="form-control <?= ($validation->hasError('harga')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Harga" value="<?= $product['harga']; ?>" name="harga">
+                            <div class="invalid-feedback"><?= $validation->getError('harga'); ?></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Sisa Barang</label>
+                            <input type="number" class="form-control <?= ($validation->hasError('sisa')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Sisa Barang" value="<?= $product['sisa']; ?>" name="sisa">
+                            <div class="invalid-feedback"><?= $validation->getError('sisa'); ?></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Stock Barang</label>
+                            <input type="number" class="form-control <?= ($validation->hasError('stock')) ? 'is-invalid' : ''; ?>" id="exampleInputEmail1" placeholder="Masukan Stock Barang" value="<?= $product['stock']; ?>" name="stock">
+                            <div class="invalid-feedback"><?= $validation->getError('stock'); ?></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach ?>
 <?= $this->endSection(); ?>

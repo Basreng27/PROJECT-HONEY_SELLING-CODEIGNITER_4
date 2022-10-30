@@ -101,4 +101,3 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<?= $this->endSection(); ?>
