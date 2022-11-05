@@ -65,6 +65,7 @@ class Product extends BaseController
                 ]
             ],
         ])) {
+            session()->setFlashdata('gagal', 'Data gagal ditambahkan');
             return redirect()->to('/admin-product')->withInput();
         }
 
@@ -142,6 +143,7 @@ class Product extends BaseController
                 ]
             ],
         ])) {
+            session()->setFlashdata('gagal', 'Data gagal ditambahkan');
             return redirect()->to('/admin-product')->withInput();
         }
 
@@ -178,8 +180,9 @@ class Product extends BaseController
         return redirect()->to('/admin-product');
     }
 
-    public function deleteProduct($id)
+    public function deleteProduct()
     {
+        $id = $this->request->getVar('id_madu');
         //cari gambar berdasarkan id
         $product = $this->ProductModel->find($id);
         // cek jika file gambar default

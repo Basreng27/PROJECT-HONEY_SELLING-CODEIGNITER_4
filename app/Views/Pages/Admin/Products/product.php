@@ -27,6 +27,18 @@
         </div>
     <?php } ?>
 
+    <?php if (session()->getFlashdata('delete')) { ?>
+        <div class="alert alert-success" role="alert">
+            Product Berhasil didelete
+        </div>
+    <?php } ?>
+
+    <?php if (session()->getFlashdata('gagal')) { ?>
+        <div class="alert alert-danger" role="alert">
+            Product gagal ditambahkan
+        </div>
+    <?php } ?>
+
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -71,7 +83,8 @@
                                             <td>
                                                 <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-edit<?= $data['id_madu']; ?>">Edit</a>
                                                 ||
-                                                <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-danger"> Delete</a>
+                                                <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal-keranjang" data-toggle="modal" data-target="#modal-delete<?= $data['id_madu']; ?>">Delete</a>
+                                                <!-- <a href="#" class="btn" data-bs-toggle="modal" data-bs-target="#modal-danger"> Delete</a> -->
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -212,6 +225,36 @@
                     <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+<?php endforeach ?>
+
+<?php foreach ($data_products as $productdel) : ?>
+    <div class="modal fade" id="modal-delete<?= $productdel['id_madu']; ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-danger">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <!-- <form action="/delete-product/<?= $productdel['id_madu']; ?>" method="POST"> -->
+                <form action="/delete-product" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="id_madu" value="<?= $productdel['id_madu']; ?>">
+                        Apakah kamu yakin akan <strong>menghapus</strong> product <?= $productdel['nama_madu']; ?>?
+                    </div>
+
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
                     </div>
                 </form>
             </div>

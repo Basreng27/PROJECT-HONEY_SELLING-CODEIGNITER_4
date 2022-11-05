@@ -5,14 +5,17 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 
 use App\Models\Product_model;
+use App\Models\Review_model;
 
 class Admins extends BaseController
 {
     protected $ProductModel;
+    protected $ReviewModel;
 
     public function __construct()
     {
         $this->ProductModel = new Product_model();
+        $this->ReviewModel = new Review_model();
     }
 
     public function index()
@@ -61,7 +64,8 @@ class Admins extends BaseController
         }
 
         $data = [
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'data_reviews' => $this->ReviewModel->findAll()
         ];
 
         return view('Pages/Admin/Review/review', $data);

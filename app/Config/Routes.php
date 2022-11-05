@@ -28,7 +28,12 @@ $routes->get('/admin-admin', 'Admin\Admins::admin');
 // product
 $routes->post('/tambah-product', 'Admin\Product::prosesTambahProduct');
 $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
-$routes->delete('/delete-product/(:num)', 'Admin\Product::deleteProduct/$1');
+// $routes->delete('/delete-product/(:any)', 'Admin\Product::deleteProduct/$1');
+$routes->post('/delete-product', 'Admin\Product::deleteProduct');
+// review
+$routes->post('/tambah-review', 'Admin\Review::prosesTambahReview');
+$routes->post('/update-review', 'Admin\Review::prosesUpdateReview');
+$routes->post('/delete-review', 'Admin\Review::deleteReview');
 
 // login
 $routes->get('/login', 'Login::index');
