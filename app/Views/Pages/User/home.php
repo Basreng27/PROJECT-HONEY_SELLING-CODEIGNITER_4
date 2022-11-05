@@ -22,31 +22,20 @@
                 <div class="card">
                     <div class="card-body">
                         <div id="carousel-indicators" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
+                            <!-- <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carousel-indicators" data-bs-slide-to="0" class=" active"></button>
                                 <button type="button" data-bs-target="#carousel-indicators" data-bs-slide-to="1" class=""></button>
                                 <button type="button" data-bs-target="#carousel-indicators" data-bs-slide-to="2" class=""></button>
                                 <button type="button" data-bs-target="#carousel-indicators" data-bs-slide-to="3" class=""></button>
                                 <button type="button" data-bs-target="#carousel-indicators" data-bs-slide-to="4" class=""></button>
-                            </div>
-
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img class="d-block w-100" alt="Resume Product" src="product_resume/1.jpg" height="300px" width="250px">
+                            </div> -->
+                            <?php foreach ($data_reviews as $review) : ?>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100" alt="Review Product" src="product_review/<?= $review['image_review']; ?>" height="300px" width="250px">
+                                    </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" alt="Resume Product" src="product_resume/2.jpg" height="300px" width="250px">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" alt="Resume Product" src="product_resume/3.jpg" height="300px" width="250px">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" alt="Resume Product" src="product_resume/4.jpg" height="300px" width="250px">
-                                </div>
-                                <div class="carousel-item">
-                                    <img class="d-block w-100" alt="Resume Product" src="product_resume/5.jpg" height="300px" width="250px">
-                                </div>
-                            </div>
+                            <?php endforeach ?>
                         </div>
                     </div>
                 </div>

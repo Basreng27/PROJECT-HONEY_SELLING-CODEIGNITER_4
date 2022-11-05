@@ -54,6 +54,7 @@ class Login extends BaseController
                 return redirect()->to('/login');
             } else {
                 $data_session = array(
+                    'id_user' => $cekLoginUser['id_user'],
                     'nama' => $cekLoginUser['nama'],
                     'username' => $cekLoginUser['username'],
                     'stat' => "login-user"

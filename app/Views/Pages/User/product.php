@@ -14,109 +14,121 @@
     </div>
 </div>
 
+<?php if (session()->getFlashdata('gagal')) { ?>
+    <div class="alert alert-danger" role="alert">
+        Gagal ditambahkan ke Keranjang
+    </div>
+<?php } ?>
+
+<?php if (session()->getFlashdata('gagalSisa')) { ?>
+    <div class="alert alert-danger" role="alert">
+        Gagal dikarenakan jumlah yang diinginkan melebihi sisa product
+    </div>
+<?php } ?>
+
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cards">
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card">
-                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/1.jpg)"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">Card with top image</h3>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                            neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang">Tambah Ke Keranjang</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card">
-                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/2.jpg)"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">Card with top image</h3>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                            neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang">Tambah Ke Keranjang</a>
+            <?php foreach ($data_products as $product) : ?>
+                <div class="col-md-6 col-lg-3">
+                    <div class="card">
+                        <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/<?= $product['image']; ?>)"></div>
+                        <div class="card-body">
+                            <h3 class="card-title"><?= $product['nama_madu']; ?></h3>
+                            <p class="text-muted"><?= $product['deskripsi']; ?></p>
+                        </div>
+                        <div class="card-footer">
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $product['id_madu']; ?>">Tambah Ke Keranjang</a>
+                            <?php } else { ?>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">Tambah Ke Keranjang</a>
+                            <?php } ?>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card">
-                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/3.jpg)"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">Card with top image</h3>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                            neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang">Tambah Ke Keranjang</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-3">
-                <div class="card">
-                    <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/4.jpg)"></div>
-                    <div class="card-body">
-                        <h3 class="card-title">Card with top image</h3>
-                        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima
-                            neque pariatur perferendis sed suscipit velit vitae voluptatem.</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang">Tambah Ke Keranjang</a>
-                    </div>
-                </div>
-            </div>
-
+            <?php endforeach ?>
         </div>
     </div>
 </div>
 
-<div class="modal modal-blur fade" id="modal-keranjang" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+<?php foreach ($data_products as $products) : ?>
+    <div class="modal modal-blur fade" id="modal-keranjang<?= $products['id_madu']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
 
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Nama Madu</label>
-                    <input type="text" class="form-control" name="example-text-input">
-                </div>
+                <form action="/user-tambah-keranjang" method="POST">
+                    <div class="modal-body">
+                        <input type="hidden" name="id_user" value="<?= session()->get('id_user') ?>">
+                        <input type="hidden" name="id_madu" value="<?= $products['id_madu']; ?>">
+                        <div class="mb-3">
+                            <label class="form-label">Nama Madu</label>
+                            <input type="text" class="form-control" name="nama_madu" value="<?= $products['nama_madu']; ?>" readonly>
+                        </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Harga</label>
-                    <input type="number" class="form-control" name="example-text-input">
-                </div>
+                        <div class="mb-3">
+                            <label class="form-label">Harga</label>
+                            <input type="number" class="form-control" name="harga" value="<?= $products['harga']; ?>" readonly>
+                        </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Deskripsi</label>
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
+                        <div class="mb-3">
+                            <label class="form-label">Deskripsi</label>
+                            <textarea class="form-control" name="deskripsi" rows="3" readonly><?= $products['deskripsi']; ?></textarea>
+                        </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Jumlah</label>
-                    <input type="number" class="form-control" name="example-text-input" maxlength="3">
-                </div>
+                        <div class="mb-3">
+                            <label class="form-label">Sisa <?= $products['nama_madu']; ?></label>
+                            <input type="number" class="form-control" name="sisa" value="<?= $products['sisa']; ?>" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Jumlah</label>
+                            <input type="number" class="form-control" name="jumlah" maxlength="3" required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                            Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <line x1="12" y1="5" x2="12" y2="19" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
+                            Tambah Ke Keranjang</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+<?php endforeach ?>
 
+<div class="modal modal-blur fade" id="modal-belum-login" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-status bg-danger"></div>
+            <div class="modal-body text-center py-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 9v2m0 4v.01" />
+                    <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                </svg>
+                <h3>Belum Login?</h3>
+                <div class="text-muted">Anda Harus Login!!</div>
+            </div>
             <div class="modal-footer">
-                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
-                    Cancel
-                </a>
-                <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
-                    <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                    Tambah Ke Keranjang
-                </a>
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col">
+                            <a href="#" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
+                        </div>
+                        <div class="col">
+                            <a href="/login" class="btn btn-info w-100">Login</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

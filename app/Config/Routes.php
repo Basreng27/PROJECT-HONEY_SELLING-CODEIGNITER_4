@@ -35,6 +35,10 @@ $routes->post('/tambah-review', 'Admin\Review::prosesTambahReview');
 $routes->post('/update-review', 'Admin\Review::prosesUpdateReview');
 $routes->post('/delete-review', 'Admin\Review::deleteReview');
 
+// user
+// keranjang
+$routes->post('/user-tambah-keranjang', 'User\Keranjang::prosesTambahKeranjang');
+
 // login
 $routes->get('/login', 'Login::index');
 $routes->post('/login-proses', 'Login::prosesLogin');

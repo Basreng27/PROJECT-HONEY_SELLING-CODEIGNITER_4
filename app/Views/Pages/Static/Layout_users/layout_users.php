@@ -58,9 +58,11 @@
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                             <a href="/login" class="dropdown-item">Login</a>
                             <a href="/regist" class="dropdown-item">Regist</a>
-                            <a href="/keranjang" class="dropdown-item">Keranjang</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Logout</a>
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                <a href="/keranjang" class="dropdown-item">Keranjang</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="/logout" class="dropdown-item">Logout</a>
+                            <?php } ?>
                         </div>
                     </div>
 

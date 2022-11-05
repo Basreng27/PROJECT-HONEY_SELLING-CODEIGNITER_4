@@ -36,31 +36,35 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <div>1</div>
-                                    </td>
-                                    <td>
-                                        <span class="avatar me-2" style="background-image: url(products/1.jpg)"></span>
-                                    </td>
-                                    <td>
-                                        <div>Madu Manis</div>
-                                    </td>
-                                    <td>
-                                        <div>2000</div>
-                                    </td>
-                                    <td>
-                                        <div>3</div>
-                                    </td>
-                                    <td>
-                                        <div>6000</div>
-                                    </td>
-                                    <td>
-                                        <div class="btn-list flex-nowrap">
-                                            <a href="#" class="btn" title="Checkout Untuk Menghubungi Admin">
-                                                Checkout
-                                            </a>
-                                    </td>
+                                <?php
+                                $no = 1;
+                                foreach ($data_keranjang as $keranjang) : ?>
+                                    <tr>
+                                        <td>
+                                            <div><?= $no++; ?></div>
+                                        </td>
+                                        <td>
+                                            <span class="avatar me-2" style="background-image: url(products/<?= $keranjang['image']; ?>)"></span>
+                                        </td>
+                                        <td>
+                                            <div><?= $keranjang['nama_madu']; ?></div>
+                                        </td>
+                                        <td>
+                                            <div><?= $keranjang['harga']; ?></div>
+                                        </td>
+                                        <td>
+                                            <div><?= $keranjang['jumlah']; ?></div>
+                                        </td>
+                                        <td>
+                                            <div><?= $keranjang['total']; ?></div>
+                                        </td>
+                                        <td>
+                                            <div class="btn-list flex-nowrap">
+                                                <a href="#" class="btn" title="Checkout Untuk Menghubungi Admin">
+                                                    Checkout
+                                                </a>
+                                        </td>
+                                    <?php endforeach ?>
                             </tbody>
 
                         </table>
