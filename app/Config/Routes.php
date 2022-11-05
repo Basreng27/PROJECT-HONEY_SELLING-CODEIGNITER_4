@@ -38,6 +38,8 @@ $routes->post('/delete-review', 'Admin\Review::deleteReview');
 // user
 // keranjang
 $routes->post('/user-tambah-keranjang', 'User\Keranjang::prosesTambahKeranjang');
+// chat
+$routes->get('/chat', 'User\Chat::index');
 
 // login
 $routes->get('/login', 'Login::index');

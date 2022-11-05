@@ -50,8 +50,13 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                             <div class="d-none d-xl-block ps-2">
-                                <div>Must Login</div>
-                                <div class="mt-1 small text-muted">Must Login</div>
+                                <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                    <div><?= session()->get('nama'); ?></div>
+                                    <div class="mt-1 small text-muted"><?= session()->get('nama'); ?></div>
+                                <?php } else { ?>
+                                    <div>Must Login</div>
+                                    <div class="mt-1 small text-muted">Must Login</div>
+                                <?php } ?>
                             </div>
                         </a>
 
@@ -59,6 +64,7 @@
                             <a href="/login" class="dropdown-item">Login</a>
                             <a href="/regist" class="dropdown-item">Regist</a>
                             <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                <a href="/chat" class="dropdown-item">Chat</a>
                                 <a href="/keranjang" class="dropdown-item">Keranjang</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="/logout" class="dropdown-item">Logout</a>
