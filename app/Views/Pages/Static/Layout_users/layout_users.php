@@ -8,10 +8,10 @@
     <title>Web Penjualan Madu</title>
     <!-- CSS files -->
     <link href="assets/users/css/tabler.min.css" rel="stylesheet" />
-    <link href="assets/users/tabler-flags.min.css" rel="stylesheet" />
+    <!-- <link href="assets/users/tabler-flags.min.css" rel="stylesheet" />
     <link href="assets/users/tabler-payments.min.css" rel="stylesheet" />
     <link href="assets/users/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="assets/users/demo.min.css" rel="stylesheet" />
+    <link href="assets/users/demo.min.css" rel="stylesheet" /> -->
 
     <script></script>
 </head>

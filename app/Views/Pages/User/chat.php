@@ -1,7 +1,4 @@
-<?= $this->extend('Pages\Static\Layout_users\layout_users'); ?>
-
-<?= $this->section('content_user'); ?>
-<!-- <div class="container-xl">
+<div class="container-xl">
     <div class="page-header d-print-none">
         <div class="row g-2 align-items-center">
             <div class="col">
@@ -13,51 +10,125 @@
     </div>
 </div>
 
-<div class="page-body"> -->
+<!-- <div class="page-body"> -->
 <!-- chat start -->
-<div class="container">
-    <div class="row">
-        <div class="col-12 mt-5 pt-3 pb-3 bg-white from-wrapper">
-            <div class="container">
-                <h3>Chat</h3>
-                <hr>
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-4 mb-3">
-                        <ul id="user-list" class="list-group"></ul>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/chat/css/message/messagestyle.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
+<link rel="stylesheet" href="assets/chat/css/message/loading-bar.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<section id="main" class="bg-dark">
+    <div id="chat_user_list">
+        <div id="owner_profile_details">
+            <div id="owner_avtar" style="background-image: url('profile/'); background-size: 100% 100%" alt="profile-picture">
+                <div>
+                    <div id="online"></div>
+                </div>
+            </div>
+            <div id="owner_profile_text" class="">
+                <h6 id="owner_profile_name" class="m-0 p-0"></h6>
+            </div>
+        </div>
+        <hr style="color: black">
+        <!-- <div id="user_list" class="py-3"> -->
+        <div id="user_list" class="py-3">
+        </div>
+    </div>
+    <div id="chatbox">
+        <div id="data_container" class="">
+            <div id="bg_image"></div>
+            <h2 class="mt-0">Hi! Welcome To</h2>
+            <h2>Chat With Admin</h2>
+            <p class="text-center my-2" style="color: black">Silahkan chat untuk menghubungi admin.</p>
+        </div>
+        <div class="chatting_section" id="chat_area" style="display: none">
+            <div id="header" class="py-2">
+                <div id="name_details" class="pt-2">
+                    <div id="chat_profile_image" class="mx-2" style="background-size: 100% 100%">
+                        <div id="online"></div>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-8">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="message-holder">
-                                    <div id="messages" class="row"></div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea id="message-input" class="form-control" name="" rows="2"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button id="send" class="btn float-right  btn-primary">Send</button>
-                            </div>
-                        </div>
+                    <div id="name_last_seen">
+                        <h6 class="m-0 pt-2"></h6>
+                        <p class="m-0 py-1"></p>
                     </div>
+                </div>
+                <div id="icons" class="px-4 pt-2">
+                    <div id="send_mail">
+                        <a href="" id="mail_link"><i class="fas fa-envelope text-dark"></i></a>
+                    </div>
+                    <div id="details_btn" class="ml-3">
+                        <i class="fas fa-info-circle text-dark"></i>
+                    </div>
+                </div>
+            </div>
+            <div id="chat_message_area">
+
+            </div>
+            <div id="messageBar" class="py-4 px-4">
+                <div id="textBox_attachment_emoji_container">
+                    <div id="text_box_message">
+                        <input type="text" maxlength="200" name="txt_message" id="messageText" class="form-control" placeholder="Type your message">
+                    </div>
+                    <div id="text_counter">
+                        <p id="count_text" class="m-0 p-0"></p>
+                    </div>
+                </div>
+                <div id="sendButtonContainer">
+                    <button class="btn" id="send_message">
+                        <span class="material-icons">send</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <div id="details_of_user">
+        <div id="user_details_container_avtar" style="background-size: 100% 100%"></div>
+        <h5 class="text-justify" id="details_of_name"></h5>
+        <p class="text-justify" id="details_of_bio"></p>
+        <div id="user_details_container_details">
+            <p class="text-justify" id="details_of_created"></p>
+            <p class="text-justify" id="details_of_birthday"></p>
+            <p class="text-justify" id="details_of_mobile"><span></p>
+            <p class="text-justify" id="details_of_email"><span></p>
+            <p class="text-justify" id="details_of_location"><span></p>
+        </div>
+        <button class="btn btn-danger" id="btn_block">Block User</button>
+    </div>
+</section>
+<div id="update_container">
+    <div style="background-color:#F5F6FA;" class="p-3 d-flex justify-content-between align-items-center">
+        <h5 id="update_container_title" class="m-0 p-0">Update Profile</h5>
+        <i class="fas fa-times"></i>
+    </div>
+    <form class="" id="form_details" autocomplete="off">
+        <div class="form-group">
+            <label>Date Of Birth</label>
+            <input type="text" name="txt_dob" id="dob" class="form-control" placeholder="dd-mm-yyyy">
+        </div>
+        <div class="form-group">
+            <label>Contact Number</label>
+            <input type="text" maxlength="10" name="txt_phone" placeholder="Write your mobile number" id="phone_num" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="txt_addr" id="address" placeholder="Write your address" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Bio</label>
+            <textarea name="bio" class="" id="update_bio" placeholder="Write your bio here.."></textarea>
+        </div>
+        <button class="btn btn-block" id="update_btn" style="border-radius:0px;">
+            <span>Save Changes</span>
+        </button>
+    </form>
 </div>
 
-<script>
-    // console.log(location.host)
-    // var conn = new WebSocket('ws://localhost:8080');
-    var conn = new WebSocket("ws://" + location.host + "/");
-    conn.onopen = function(e) {
-        console.log("Connection established!");
-    };
-
-    conn.onmessage = function(e) {
-        console.log(e.data);
-    };
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"></script>
+<script type="text/javascript" src="/assets/chat/js/message/main.js"></script>
 <!-- chat end -->
 <!-- </div> -->
-<?= $this->endSection(); ?>

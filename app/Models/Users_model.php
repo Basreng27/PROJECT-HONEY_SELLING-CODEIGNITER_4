@@ -15,4 +15,9 @@ class Users_model extends Model
     {
         return $this->where(['username' => $username, 'password' => $password])->first();
     }
+
+    public function getAllUser($id_user)
+    {
+        return $this->where(['id_user !=' => $id_user])->findAll();
+    }
 }

@@ -40,6 +40,8 @@ $routes->post('/delete-review', 'Admin\Review::deleteReview');
 $routes->post('/user-tambah-keranjang', 'User\Keranjang::prosesTambahKeranjang');
 // chat
 $routes->get('/chat', 'User\Chat::index');
+$routes->get('/Pesan/getUser', 'User\Pesan::getUser');
+$routes->get('/Pesan/userDetail', 'User\Pesan::userDetail');
 
 // login
 $routes->get('/login', 'Login::index');
