@@ -4,22 +4,26 @@ namespace App\Controllers;
 
 use App\Models\Admins_model;
 use App\Models\Users_model;
+use App\Models\Set_dashboard_model;
 
 class Login extends BaseController
 {
     protected $AdminsModel;
     protected $UsersModel;
+    protected $Set_dashboardModel;
 
     public function __construct()
     {
         $this->AdminsModel = new Admins_model();
         $this->UsersModel = new Users_model();
+        $this->Set_dashboardModel = new Set_dashboard_model();
     }
 
     public function index()
     {
         $data = [
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'set' => $this->Set_dashboardModel->find(1)
         ];
         return view('Pages/Static/login_regist/login', $data);
     }

@@ -73,7 +73,7 @@
                                     <?php $no = 1;
                                     foreach ($data_products as $data) : ?>
                                         <tr>
-                                            <td><?= $no; ?></td>
+                                            <td><?= $no++; ?></td>
                                             <td><?= $data['nama_madu']; ?></td>
                                             <td><img src="/products/<?= $data['image'] ?>" class="image" width="80" height="60"></td>
                                             <td><?= $data['deskripsi']; ?></td>

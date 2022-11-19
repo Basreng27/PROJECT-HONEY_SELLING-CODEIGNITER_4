@@ -20,8 +20,16 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab earum nesciunt voluptas voluptatum, delectus minima necessitatibus porro. Similique, nostrum eius, quidem facere laborum perferendis quo iste saepe tempore sint nihil.</p>
+                <img src="set_admin/<?= $set['logo']; ?>" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8; display:block; margin:auto;" height="150" width="150">
             </div>
+            <br>
+            <!-- <div class="row"> -->
+            <div class="card">
+                <div class="card-body">
+                    <p><?= $set['deskripsi']; ?>.</p>
+                </div>
+            </div>
+            <!-- </div> -->
             <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>

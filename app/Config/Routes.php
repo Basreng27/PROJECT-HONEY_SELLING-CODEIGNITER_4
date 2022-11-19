@@ -25,6 +25,9 @@ $routes->get('/admin-madu', 'Admin\Admins::index');
 $routes->get('/admin-product', 'Admin\Admins::product');
 $routes->get('/admin-review', 'Admin\Admins::review');
 $routes->get('/admin-admin', 'Admin\Admins::admin');
+$routes->get('/admin-nomor', 'Admin\Admins::nomor');
+$routes->get('/admin-set-dashboard', 'Admin\Admins::setDashboard');
+$routes->get('/admin-pesanan', 'Admin\Admins::pesanan');
 // product
 $routes->post('/tambah-product', 'Admin\Product::prosesTambahProduct');
 $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
@@ -34,12 +37,23 @@ $routes->post('/delete-product', 'Admin\Product::deleteProduct');
 $routes->post('/tambah-review', 'Admin\Review::prosesTambahReview');
 $routes->post('/update-review', 'Admin\Review::prosesUpdateReview');
 $routes->post('/delete-review', 'Admin\Review::deleteReview');
+// nomor
+$routes->post('/update-nomor', 'Admin\Nomor::prosesUpdateNomor');
+// pesannan
+$routes->get('/admin-setuju/(:num)', 'Admin\Pesanan::pesananSetuju/$1');
+$routes->post('/admin-tolak', 'Admin\Pesanan::pesananTolak');
+// set dashboard
+$routes->post('/update-set-dashboard', 'Admin\SetDashboard::updateSet');
 
 // user
 // keranjang
 $routes->post('/user-tambah-keranjang', 'User\Keranjang::prosesTambahKeranjang');
 // chat
 $routes->get('/chat', 'User\Chat::index');
+// checkout
+$routes->post('/user-checkout', 'User\Checkout::prosesCheckout');
+// pesanan user
+$routes->get('/pesanan-user', 'User\PesananUser::index');
 
 // login
 $routes->get('/login', 'Login::index');

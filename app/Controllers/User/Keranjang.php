@@ -91,7 +91,8 @@ class Keranjang extends BaseController
             'id_user' => $this->request->getVar('id_user'),
             'id_madu' => $id_madu,
             'jumlah' => $jumlah,
-            'total' => $total
+            'total' => $total,
+            'status_keranjang' => 0
         ]);
 
         return redirect()->to('/keranjang');

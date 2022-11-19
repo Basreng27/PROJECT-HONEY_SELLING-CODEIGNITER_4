@@ -23,7 +23,7 @@
 
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                     <a href=".">
-                        <img src="#" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                        <img src="set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
                     </a>
                 </h1>
 
@@ -61,10 +61,14 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="/login" class="dropdown-item">Login</a>
-                            <a href="/regist" class="dropdown-item">Regist</a>
                             <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
-                                <a href="/chat" class="dropdown-item">Chat</a>
+                            <?php } else { ?>
+                                <a href="/login" class="dropdown-item">Login</a>
+                                <a href="/regist" class="dropdown-item">Regist</a>
+                            <?php } ?>
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                <!-- <a href="/chat" class="dropdown-item">Chat</a> -->
+                                <a href="/pesanan-user" class="dropdown-item">Pesanan</a>
                                 <a href="/keranjang" class="dropdown-item">Keranjang</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="/logout" class="dropdown-item">Logout</a>

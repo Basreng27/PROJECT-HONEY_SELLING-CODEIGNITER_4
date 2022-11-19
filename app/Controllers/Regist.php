@@ -3,21 +3,25 @@
 namespace App\Controllers;
 
 use App\Models\Users_model;
+use App\Models\Set_dashboard_model;
 
 class Regist extends BaseController
 {
     protected $UsersModel;
+    protected $Set_dashboardModel;
 
     public function __construct()
     {
         $this->UsersModel = new Users_model();
+        $this->Set_dashboardModel = new Set_dashboard_model();
     }
 
     public function index()
     {
         $data = [
             'validation' => \Config\Services::validation(),
-            'gagal' => ''
+            'gagal' => '',
+            'set' => $this->Set_dashboardModel->find(1)
         ];
 
         return view('Pages/Static/login_regist/regist', $data);

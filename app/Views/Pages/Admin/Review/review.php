@@ -69,7 +69,7 @@
                                     <?php $no = 1;
                                     foreach ($data_reviews as $data) : ?>
                                         <tr>
-                                            <td><?= $no; ?></td>
+                                            <td><?= $no++; ?></td>
                                             <td><img src="/product_review/<?= $data['image_review'] ?>" class="image" width="80" height="60"></td>
                                             <td><?= $data['urutan']; ?></td>
                                             <td>

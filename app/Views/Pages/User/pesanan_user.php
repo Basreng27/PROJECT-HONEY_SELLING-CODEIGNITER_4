@@ -7,18 +7,12 @@
         <div class="row g-2 align-items-center">
             <div class="col">
                 <h2 class="page-title">
-                    Keranjang
+                    Pesanan <?= session()->get('nama') ?>
                 </h2>
             </div>
         </div>
     </div>
 </div>
-
-<?php if (session()->getFlashdata('gagal')) { ?>
-    <div class="alert alert-danger" role="alert">
-        Product gagal dicheckout
-    </div>
-<?php } ?>
 
 <div class="page-body">
     <div class="container-xl">
@@ -37,7 +31,8 @@
                                     <th>Harga</th>
                                     <th>Jumlah</th>
                                     <th>Total</th>
-                                    <th class="w-1">Action</th>
+                                    <th>Status</th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
 
@@ -65,10 +60,16 @@
                                             <div><?= $keranjang['total']; ?></div>
                                         </td>
                                         <td>
-                                            <div class="btn-list flex-nowrap">
-                                                <a href="#" class="btn" title="Checkout Untuk Menghubungi Admin" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $keranjang['id_keranjang']; ?>">
-                                                    Checkout
-                                                </a>
+                                            <?php if ($keranjang['status'] == 'Setuju') { ?>
+                                                <div> <button class="btn btn-success"><?= $keranjang['status']; ?></button> </div>
+                                            <?php } elseif ($keranjang['status'] == 'Tolak') { ?>
+                                                <div> <button class="btn btn-danger"><?= $keranjang['status']; ?></button> </div>
+                                            <?php } else { ?>
+                                                <div> <button class="btn btn-info"><?= $keranjang['status']; ?></button> </div>
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <div><?= $keranjang['keterangan']; ?></div>
                                         </td>
                                     <?php endforeach ?>
                             </tbody>
