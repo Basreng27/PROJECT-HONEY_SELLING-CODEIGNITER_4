@@ -174,15 +174,15 @@
                         </svg>
                         <h3>Beri Kami Rating Product <?= $keranjangr['nama_madu']; ?>!!!</h3>
                         <!-- <div class="text-muted">Anda Harus Login!!</div> -->
-                        <span class="fa fa-star" id="rating_1" onclick="rating(1)"></span>
-                        <span class="fa fa-star" id="rating_2" onclick="rating(2)"></span>
-                        <span class="fa fa-star" id="rating_3" onclick="rating(3)"></span>
-                        <span class="fa fa-star" id="rating_4" onclick="rating(4)"></span>
-                        <span class="fa fa-star" id="rating_5" onclick="rating(5)"></span>
+                        <span class="fa fa-star" id="rating_1<?= $keranjangr['id_keranjang']; ?>" onclick="rating<?= $keranjangr['id_keranjang']; ?>(1)"></span>
+                        <span class="fa fa-star" id="rating_2<?= $keranjangr['id_keranjang']; ?>" onclick="rating<?= $keranjangr['id_keranjang']; ?>(2)"></span>
+                        <span class="fa fa-star" id="rating_3<?= $keranjangr['id_keranjang']; ?>" onclick="rating<?= $keranjangr['id_keranjang']; ?>(3)"></span>
+                        <span class="fa fa-star" id="rating_4<?= $keranjangr['id_keranjang']; ?>" onclick="rating<?= $keranjangr['id_keranjang']; ?>(4)"></span>
+                        <span class="fa fa-star" id="rating_5<?= $keranjangr['id_keranjang']; ?>" onclick="rating<?= $keranjangr['id_keranjang']; ?>(5)"></span>
 
                         <input type="hidden" name="id_madu" value="<?= $keranjangr['id_madu']; ?>">
                         <input type="hidden" name="id_user" value="<?= session()->get('id_user'); ?>">
-                        <input type="hidden" name="rating" value="0">
+                        <input type="hidden" id="ratingv<?= $keranjangr['id_keranjang']; ?>" name="rating">
                     </div>
 
                     <div class="modal-footer">
@@ -207,63 +207,56 @@
     var modal = document.getElementById('modal-rating');
     var btn = document.getElementById('btn_rating');
 
-    // btn.onclick = function() {
-    //     modal.style.display = "block";
-    // }
+    <?php foreach ($data_keranjang as $keranjangrat) : ?>
 
-    // window.onclick = function(event) {
-    //     if (event.target == model) {
-    //         modal.style.display = "none";
-    //     }
-    // }
+        function rating<?= $keranjangrat['id_keranjang']; ?>(id) {
+            document.getElementById('ratingv<?= $keranjangrat['id_keranjang']; ?>').value = id;
 
-    function rating(id) {
-        document.getElementsByName('rating')[0].value = id;
+            switch (id) {
+                case 1:
+                    checkRating("rating_1<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_2<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_3<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_4<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_5<?= $keranjangrat['id_keranjang']; ?>");
 
-        switch (id) {
-            case 1:
-                checkRating("rating_1");
-                uncheckRating("rating_2");
-                uncheckRating("rating_3");
-                uncheckRating("rating_4");
-                uncheckRating("rating_5");
+                    break;
+                case 2:
+                    checkRating("rating_1<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_2<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_3<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_4<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_5<?= $keranjangrat['id_keranjang']; ?>");
 
-                break;
-            case 2:
-                checkRating("rating_1");
-                checkRating("rating_2");
-                uncheckRating("rating_3");
-                uncheckRating("rating_4");
-                uncheckRating("rating_5");
+                    break;
+                case 3:
+                    checkRating("rating_1<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_2<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_3<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_4<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_5<?= $keranjangrat['id_keranjang']; ?>");
 
-                break;
-            case 3:
-                checkRating("rating_1");
-                checkRating("rating_2");
-                checkRating("rating_3");
-                uncheckRating("rating_4");
-                uncheckRating("rating_5");
+                    break;
+                case 4:
+                    checkRating("rating_1<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_2<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_3<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_4<?= $keranjangrat['id_keranjang']; ?>");
+                    uncheckRating("rating_5<?= $keranjangrat['id_keranjang']; ?>");
 
-                break;
-            case 4:
-                checkRating("rating_1");
-                checkRating("rating_2");
-                checkRating("rating_3");
-                checkRating("rating_4");
-                uncheckRating("rating_5");
+                    break;
+                case 5:
+                    checkRating("rating_1<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_2<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_3<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_4<?= $keranjangrat['id_keranjang']; ?>");
+                    checkRating("rating_5<?= $keranjangrat['id_keranjang']; ?>");
 
-                break;
-            case 5:
-                checkRating("rating_1");
-                checkRating("rating_2");
-                checkRating("rating_3");
-                checkRating("rating_4");
-                checkRating("rating_5");
-
-                break;
-            default:
+                    break;
+                default:
+            }
         }
-    }
+    <?php endforeach ?>
 
     function checkRating(star_id) {
         var element = document.getElementById(star_id);
