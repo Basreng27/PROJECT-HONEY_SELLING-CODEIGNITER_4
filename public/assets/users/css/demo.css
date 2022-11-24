@@ -487,3 +487,6 @@ body.no-transitions * {
 .settings-scheme-colored {
   background-image: linear-gradient(135deg, var(--tblr-primary) 50%, #fafbfc 50%);
 }
+.checked{
+  color: orange;
+}

@@ -8,10 +8,13 @@
     <title>Web Penjualan Madu</title>
     <!-- CSS files -->
     <link href="assets/users/css/tabler.min.css" rel="stylesheet" />
-    <link href="assets/users/tabler-flags.min.css" rel="stylesheet" />
-    <link href="assets/users/tabler-payments.min.css" rel="stylesheet" />
-    <link href="assets/users/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="assets/users/demo.min.css" rel="stylesheet" />
+    <link href="assets/users/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="assets/users/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="assets/users/css/demo.min.css" rel="stylesheet" />
+    <link href="assets/users/css/demo.css" rel="stylesheet" />
+    <!-- <link href="assets/users/css/font-awesome.min.css" rel="stylesheet" /> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <script></script>
 </head>
@@ -120,6 +123,26 @@
                                     </span>
                                 </a>
                             </li>
+
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/keranjang">
+                                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <polyline points="12 3 20 7.5 20 16.5 12 21 4 16.5 4 7.5 12 3" />
+                                                <line x1="12" y1="12" x2="20" y2="7.5" />
+                                                <line x1="12" y1="12" x2="12" y2="21" />
+                                                <line x1="12" y1="12" x2="4" y2="7.5" />
+                                                <line x1="16" y1="5.25" x2="8" y2="9.75" />
+                                            </svg>
+                                        </span>
+                                        <span class="nav-link-title">
+                                            Keranjang
+                                        </span>
+                                    </a>
+                                </li>
+                            <?php } ?>
                         </ul>
 
                     </div>

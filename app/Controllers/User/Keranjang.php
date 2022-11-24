@@ -95,6 +95,7 @@ class Keranjang extends BaseController
             'status_keranjang' => 0
         ]);
 
-        return redirect()->to('/keranjang');
+        // return redirect()->to('/keranjang');
+        return redirect()->to('/product');
     }
 }

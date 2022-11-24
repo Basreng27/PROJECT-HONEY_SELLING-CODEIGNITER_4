@@ -33,13 +33,24 @@
                                     <th>Total</th>
                                     <th>Status</th>
                                     <th>Keterangan</th>
+                                    <th>Beri Rating</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <?php
                                 $no = 1;
-                                foreach ($data_keranjang as $keranjang) : ?>
+                                foreach ($data_keranjang as $keranjang) :
+                                    $this->RatingModel = new App\Models\Rating_model();
+
+                                    $sumRating = $this->RatingModel->sumRatingS($keranjang['id_madu'], session()->get('id_user'));
+                                    $countRating = $this->RatingModel->countRatingS($keranjang['id_madu'], session()->get('id_user'));
+
+                                    $resultRating = 0;
+                                    if ($countRating) {
+                                        $resultRating = $sumRating['rating'] / $countRating;
+                                    } ?>
                                     <tr>
                                         <td>
                                             <div><?= $no++; ?></div>
@@ -70,6 +81,22 @@
                                         </td>
                                         <td>
                                             <div><?= $keranjang['keterangan']; ?></div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <?php for ($i = 0; $i < 5; $i++) {
+                                                    if (($i + 1) <= $resultRating) { ?>
+                                                        <span class="fa fa-star checked"></span>
+                                                    <?php } else { ?>
+                                                        <span class="fa fa-star"></span>
+                                                <?php }
+                                                } ?>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <button id="btn_ratig" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-rating<?= $keranjang['id_keranjang']; ?>">Beri Rating</button>
+                                            </div>
                                         </td>
                                     <?php endforeach ?>
                             </tbody>
@@ -130,4 +157,122 @@
         </div>
     </div>
 <?php endforeach ?>
+
+<?php foreach ($data_keranjang as $keranjangr) : ?>
+    <div class="modal modal-blur fade" id="modal-rating<?= $keranjangr['id_keranjang']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-status bg-success"></div>
+
+                <form action="/proses-rating" method="POST">
+                    <div class="modal-body text-center py-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-success icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 9v2m0 4v.01" />
+                            <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                        </svg>
+                        <h3>Beri Kami Rating Product <?= $keranjangr['nama_madu']; ?>!!!</h3>
+                        <!-- <div class="text-muted">Anda Harus Login!!</div> -->
+                        <span class="fa fa-star" id="rating_1" onclick="rating(1)"></span>
+                        <span class="fa fa-star" id="rating_2" onclick="rating(2)"></span>
+                        <span class="fa fa-star" id="rating_3" onclick="rating(3)"></span>
+                        <span class="fa fa-star" id="rating_4" onclick="rating(4)"></span>
+                        <span class="fa fa-star" id="rating_5" onclick="rating(5)"></span>
+
+                        <input type="hidden" name="id_madu" value="<?= $keranjangr['id_madu']; ?>">
+                        <input type="hidden" name="id_user" value="<?= session()->get('id_user'); ?>">
+                        <input type="hidden" name="rating" value="0">
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="w-100">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="#" class="btn w-100" data-bs-dismiss="modal">Cancel</a>
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-info w-100" type="submit" name="submit" value="Rate!!" id="btn_rating">Beri Rating</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+
+<script>
+    var modal = document.getElementById('modal-rating');
+    var btn = document.getElementById('btn_rating');
+
+    // btn.onclick = function() {
+    //     modal.style.display = "block";
+    // }
+
+    // window.onclick = function(event) {
+    //     if (event.target == model) {
+    //         modal.style.display = "none";
+    //     }
+    // }
+
+    function rating(id) {
+        document.getElementsByName('rating')[0].value = id;
+
+        switch (id) {
+            case 1:
+                checkRating("rating_1");
+                uncheckRating("rating_2");
+                uncheckRating("rating_3");
+                uncheckRating("rating_4");
+                uncheckRating("rating_5");
+
+                break;
+            case 2:
+                checkRating("rating_1");
+                checkRating("rating_2");
+                uncheckRating("rating_3");
+                uncheckRating("rating_4");
+                uncheckRating("rating_5");
+
+                break;
+            case 3:
+                checkRating("rating_1");
+                checkRating("rating_2");
+                checkRating("rating_3");
+                uncheckRating("rating_4");
+                uncheckRating("rating_5");
+
+                break;
+            case 4:
+                checkRating("rating_1");
+                checkRating("rating_2");
+                checkRating("rating_3");
+                checkRating("rating_4");
+                uncheckRating("rating_5");
+
+                break;
+            case 5:
+                checkRating("rating_1");
+                checkRating("rating_2");
+                checkRating("rating_3");
+                checkRating("rating_4");
+                checkRating("rating_5");
+
+                break;
+            default:
+        }
+    }
+
+    function checkRating(star_id) {
+        var element = document.getElementById(star_id);
+        element.classList.add("checked");
+    }
+
+    function uncheckRating(star_id) {
+        var element = document.getElementById(star_id);
+        element.classList.remove("checked");
+    }
+</script>
 <?= $this->endSection(); ?>

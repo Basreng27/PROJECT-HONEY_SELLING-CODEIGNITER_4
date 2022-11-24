@@ -112,9 +112,15 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Alamat / Lokasi COD</label>
+                            <label class="form-label">Alamat</label>
                             <textarea class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" name="lokasi" rows="3"><?= old('lokasi'); ?></textarea>
                             <div class="invalid-feedback"><?= $validation->getError('lokasi'); ?></div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <h3><b>Pembayaran Dilakukan Dengan Sistem COD</b></h3>
+                            </label>
                         </div>
                     </div>
 

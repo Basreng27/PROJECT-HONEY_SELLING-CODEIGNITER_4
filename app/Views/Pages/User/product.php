@@ -29,13 +29,32 @@
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cards">
-            <?php foreach ($data_products as $product) : ?>
+            <?php foreach ($data_products as $product) :
+                $this->RatingModel = new App\Models\Rating_model();
+
+                $sumRating = $this->RatingModel->sumRating($product['id_madu']);
+                $countRating = $this->RatingModel->countRating($product['id_madu']);
+
+                $resultRating = 0;
+                if ($countRating) {
+                    $resultRating = $sumRating['rating'] / $countRating;
+                }
+            ?>
                 <div class="col-md-6 col-lg-3">
                     <div class="card">
                         <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/<?= $product['image']; ?>)"></div>
                         <div class="card-body">
                             <h3 class="card-title"><?= $product['nama_madu']; ?></h3>
                             <p class="text-muted"><?= $product['deskripsi']; ?></p>
+                            <p>
+                                <?php for ($i = 0; $i < 5; $i++) {
+                                    if (($i + 1) <= $resultRating) { ?>
+                                        <span class="fa fa-star checked"></span>
+                                    <?php } else { ?>
+                                        <span class="fa fa-star"></span>
+                                <?php }
+                                } ?>
+                            </p>
                         </div>
                         <div class="card-footer">
                             <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
