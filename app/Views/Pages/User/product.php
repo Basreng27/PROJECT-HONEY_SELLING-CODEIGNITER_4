@@ -62,6 +62,9 @@
                             <?php } else { ?>
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">Tambah Ke Keranjang</a>
                             <?php } ?>
+                            <br>
+                            <br>
+                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#komen<?= $product['id_madu']; ?>">Lihat Komentar</a>
                         </div>
                     </div>
                 </div>
@@ -152,4 +155,36 @@
         </div>
     </div>
 </div>
+
+<?php foreach ($data_products as $productk) : ?>
+    <div class="modal modal-blur fade" id="komen<?= $productk['id_madu']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <input type="hidden" name="id_user" value="<?= session()->get('id_user') ?>">
+                    <input type="hidden" name="id_madu" value="<?= $productk['id_madu']; ?>">
+                    <?php
+                    $komen = (new App\Models\Rating_model())->komen($productk['id_madu']);
+                    foreach ($komen as $dkomen) :
+                        if (!empty($dkomen['komen'])) { ?>
+                            <div class="mb-3 mt-3" style="background-color: #F6F6F6;">
+                                <label class="form-label"><?= $dkomen['nama']; ?></label>
+                                <p><?= $dkomen['komen']; ?></p>
+                            </div>
+                            <hr>
+                    <?php }
+                    endforeach ?>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+
 <?= $this->endSection(); ?>

@@ -150,6 +150,18 @@
             </div>
         </div>
 
+        <?php
+
+        use App\Models\No_wa_model;
+
+        $this->No_waModel = new No_wa_model();
+        $no = $this->No_waModel->find(1); ?>
+        <div style="position: fixed; bottom: 50px; right: 50px; z-index: 99;">
+            <a href="https://api.whatsapp.com/send?phone=<?= $no['no_wa'] ?>" target="_blank" rel="noopener">
+                <img src="<?= base_url('set_admin/WA-logo@65x.png'); ?>" width="65" height="66" alt="Hubungi Kami Melalui WhatsApp"></a>
+            </a>
+        </div>
+
         <div class="page-wrapper">
 
             <?= $this->renderSection('content_user'); ?>

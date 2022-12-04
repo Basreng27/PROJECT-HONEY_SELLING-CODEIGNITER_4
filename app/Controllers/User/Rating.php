@@ -23,6 +23,7 @@ class Rating extends BaseController
         $id_madu = $this->request->getVar('id_madu');
         $id_user = $this->request->getVar('id_user');
         $rating = $this->request->getVar('rating');
+        $komen = $this->request->getVar('komen');
 
         $check = $this->RatingModel->getRating($id_madu, $id_user);
         if (!empty($check)) {
@@ -31,13 +32,15 @@ class Rating extends BaseController
                 'id_rating' => $getData['id_rating'],
                 'id_user' => $id_user,
                 'id_madu' => $id_madu,
-                'rating' => $rating
+                'rating' => $rating,
+                'komen' => $komen
             ]);
         } else {
             $this->RatingModel->save([
                 'id_user' => $id_user,
                 'id_madu' => $id_madu,
-                'rating' => $rating
+                'rating' => $rating,
+                'komen' => $komen
             ]);
         }
 

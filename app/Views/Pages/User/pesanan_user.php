@@ -183,6 +183,11 @@
                         <input type="hidden" name="id_madu" value="<?= $keranjangr['id_madu']; ?>">
                         <input type="hidden" name="id_user" value="<?= session()->get('id_user'); ?>">
                         <input type="hidden" id="ratingv<?= $keranjangr['id_keranjang']; ?>" name="rating">
+
+                        <div>
+                            <label class="form-label">Komentar</label>
+                            <textarea class="form-control" name="komen" rows="3"><?= (!empty($keranjangr['komen'])) ? $keranjangr['komen'] : '' ?></textarea>
+                        </div>
                     </div>
 
                     <div class="modal-footer">
