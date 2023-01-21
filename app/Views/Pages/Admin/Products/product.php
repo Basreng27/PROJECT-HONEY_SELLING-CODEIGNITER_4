@@ -62,6 +62,7 @@
                                         <th>Nama</th>
                                         <th>Image</th>
                                         <th>Deskripsi</th>
+                                        <th>Khasiat</th>
                                         <th>Harga</th>
                                         <th>Sisa</th>
                                         <th>Stock</th>
@@ -77,6 +78,7 @@
                                             <td><?= $data['nama_madu']; ?></td>
                                             <td><img src="/products/<?= $data['image'] ?>" class="image" width="80" height="60"></td>
                                             <td><?= $data['deskripsi']; ?></td>
+                                            <td><a href="/khasiat/<?= $data['id_madu']; ?>" class="btn btn-info">Tambah Khasiat</a></td>
                                             <td><?= $data['harga']; ?></td>
                                             <td><?= $data['sisa']; ?></td>
                                             <td><?= $data['stock']; ?></td>

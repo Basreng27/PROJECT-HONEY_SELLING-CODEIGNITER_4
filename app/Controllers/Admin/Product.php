@@ -93,6 +93,17 @@ class Product extends BaseController
         return redirect()->to('/admin-product');
     }
 
+    public function prosesTambahKhasiat()
+    {
+        $this->ProductModel->save([
+            'id_madu' => $this->request->getVar('id_madu'),
+            'isi_khasiat' => $this->request->getVar('isi_khasiat')
+        ]);
+
+        session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
+        return redirect()->to('/admin-product');
+    }
+
     public function prosesUpdateProduct()
     {
         //untuk get data file

@@ -64,6 +64,25 @@ class Admins extends BaseController
         return view('Pages/Admin/Products/product', $data);
     }
 
+    public function khasiat($id_product)
+    {
+        if (session()->get('stat') != 'login-admin') {
+            if (session()->get('stat') == 'login-user') {
+                return redirect()->to('/home');
+            } else {
+                return redirect()->to('/');
+            }
+        }
+
+        $data = [
+            'validation' => \Config\Services::validation(),
+            'data_products' => $this->ProductModel->where(['id_madu' => $id_product])->find(),
+            'set' => $this->Set_dashboardModel->find(1)
+        ];
+
+        return view('Pages/Admin/Products/khasiat', $data);
+    }
+
     public function review()
     {
         if (session()->get('stat') != 'login-admin') {

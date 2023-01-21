@@ -23,6 +23,7 @@ $routes->get('/keranjang', 'User\Users::keranjang');
 // admin
 $routes->get('/admin-madu', 'Admin\Admins::index');
 $routes->get('/admin-product', 'Admin\Admins::product');
+$routes->get('/khasiat/(:num)', 'Admin\Admins::khasiat/$1');
 $routes->get('/admin-review', 'Admin\Admins::review');
 $routes->get('/admin-admin', 'Admin\Admins::admin');
 $routes->get('/admin-nomor', 'Admin\Admins::nomor');
@@ -31,6 +32,7 @@ $routes->get('/admin-pesanan', 'Admin\Admins::pesanan');
 // product
 $routes->post('/tambah-product', 'Admin\Product::prosesTambahProduct');
 $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
+$routes->post('/tambah-khasiat', 'Admin\Product::prosesTambahKhasiat');
 // $routes->delete('/delete-product/(:any)', 'Admin\Product::deleteProduct/$1');
 $routes->post('/delete-product', 'Admin\Product::deleteProduct');
 // review

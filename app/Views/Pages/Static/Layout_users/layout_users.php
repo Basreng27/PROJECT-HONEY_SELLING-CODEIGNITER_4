@@ -143,6 +143,21 @@
                                     </a>
                                 </li>
                             <?php } ?>
+
+                            <?php
+
+                            use App\Models\No_wa_model;
+
+                            $this->No_waModel = new No_wa_model();
+                            $no = $this->No_waModel->find(1); ?>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://api.whatsapp.com/send?phone=<?= $no['no_wa'] ?>" target="_blank">
+                                    <span class="nav-link-title">
+                                        Hubungi Kami
+                                    </span>
+                                </a>
+                            </li>
                         </ul>
 
                     </div>
@@ -150,12 +165,6 @@
             </div>
         </div>
 
-        <?php
-
-        use App\Models\No_wa_model;
-
-        $this->No_waModel = new No_wa_model();
-        $no = $this->No_waModel->find(1); ?>
         <div style="position: fixed; bottom: 50px; right: 50px; z-index: 99;">
             <a href="https://api.whatsapp.com/send?phone=<?= $no['no_wa'] ?>" target="_blank" rel="noopener">
                 <img src="<?= base_url('set_admin/WA-logo@65x.png'); ?>" width="65" height="66" alt="Hubungi Kami Melalui WhatsApp"></a>
@@ -166,7 +175,7 @@
 
             <?= $this->renderSection('content_user'); ?>
 
-            <footer class="footer footer-transparent d-print-none">
+            <!-- <footer class="footer footer-transparent d-print-none">
                 <div class="container-xl">
                     <div class="row text-center align-items-center flex-row-reverse">
 
@@ -182,6 +191,42 @@
                         </div>
 
                     </div>
+                </div>
+            </footer> -->
+
+            <footer class="bg-one">
+                <div class="atas-footer" style="background-color: white;">
+                    <div class="row justify-content-around">
+                        <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                            <br>
+                            <img src="set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="row justify-content-around">
+                        <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                            <h3 style="color: black;">
+                                <p style="color: black;">Madu adalah subtansi makanan manis dan kental yang dibuat oleh lebah madu dan beberapa serangga lain. Lebah menghasilkan madu dari sekresi gula tumbuhan (nektar bunga) atau dari sekresi serangga lain (seperti honeydew atau madu serangga). Madu terbentuk melalui regurgitasi, aktivitas enzimatik, dan penguapan air. Lebah menyimpan madu dalam struktur lilin yang disebut sarang lebah.</p>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <h3 style="color: black;">Kontak Kami</h3>
+                            <p style="color: black;">Jual Madu<br>
+                                <a href="https://api.whatsapp.com/send?phone=<?= $no['no_wa'] ?>" target="_blank">Whatsapp <?= $no['no_wa'] ?></a></br>
+                                <!-- <a href="https://www.linkedin.com/company/pt.-solmit-bangun-indonesia/mycompany/" target="_blank"><i class="tf-ion-social-linkedin"></i> Solmit Consulting</a></br> -->
+                                <!-- <a href="https://www.facebook.com/solmitdotcom/"><i class="tf-ion-social-facebook" target="_blank"></i> PT Solmit Bangun Indonesia</a></br>
+                                <a href="https://www.instagram.com/beeandants/"><i class="tf-ion-social-instagram" target="_blank"></i> Solmit Bangun Indonesia</a></br>
+                                <a href="https://www.youtube.com/c/SOLMITACADEMY/featured?app=desktop" target="_blank"><i class="tf-ion-social-youtube"></i> Solmit Academy</a></br>
+                                <i class="tf-ion-android-mail"></i> info@solmit.com</br> -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom" style="background-color: #2D4569;">
+                    <h5 style="color: white;">&copy; RWM 2022</h5>
                 </div>
             </footer>
 
