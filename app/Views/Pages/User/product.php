@@ -58,13 +58,14 @@
                         </div>
                         <div class="card-footer">
                             <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $product['id_madu']; ?>">Tambah Ke Keranjang</a>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $product['id_madu']; ?>">+ Keranjang</a>
                             <?php } else { ?>
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">Tambah Ke Keranjang</a>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">+ Keranjang</a>
                             <?php } ?>
                             <br>
                             <br>
-                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#komen<?= $product['id_madu']; ?>">Lihat Komentar</a>
+                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#komen<?= $product['id_madu']; ?>">Komentar</a>
+                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#khasiat<?= $product['id_madu']; ?>">Khasiat</a>
                         </div>
                     </div>
                 </div>
@@ -175,6 +176,25 @@
                             <hr>
                     <?php }
                     endforeach ?>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach ?>
+
+<?php foreach ($data_products as $productkhas) : ?>
+    <div class="modal modal-blur fade" id="khasiat<?= $productkhas['id_madu']; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p><?= $productkhas['isi_khasiat']; ?></p>
                 </div>
 
                 <div class="modal-footer">

@@ -225,7 +225,7 @@
                     </div>
                 </div>
 
-                <div class="footer-bottom" style="background-color: #2D4569;">
+                <div class="footer-bottom">
                     <h5 style="color: white;">&copy; RWM 2022</h5>
                 </div>
             </footer>

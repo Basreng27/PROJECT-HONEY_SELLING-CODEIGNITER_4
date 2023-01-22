@@ -54,6 +54,7 @@ $routes->post('/user-tambah-keranjang', 'User\Keranjang::prosesTambahKeranjang')
 $routes->get('/chat', 'User\Chat::index');
 // checkout
 $routes->post('/user-checkout', 'User\Checkout::prosesCheckout');
+$routes->get('/terimakasih', 'User\Users::terimakasih');
 // pesanan user
 $routes->get('/pesanan-user', 'User\PesananUser::index');
 // rating

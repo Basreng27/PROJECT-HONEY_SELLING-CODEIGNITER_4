@@ -31,4 +31,19 @@ class Users extends BaseController
 
         return view('Pages/User/keranjang', $data);
     }
+
+    public function terimakasih()
+    {
+        if (session()->get('stat') != 'login-user') {
+            return redirect('/');
+        }
+
+        $data = [
+            'validation' => \Config\Services::validation(),
+            // 'data_keranjang' => $this->KeranjangModel->getKeranjang(session()->get('id_user')),
+            'set' => $this->Set_dashboardModel->find(1)
+        ];
+
+        return view('Pages/User/terimakasih', $data);
+    }
 }
