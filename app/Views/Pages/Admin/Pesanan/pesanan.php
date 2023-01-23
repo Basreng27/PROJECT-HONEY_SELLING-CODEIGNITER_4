@@ -17,7 +17,8 @@
 
     <?php if (session()->getFlashdata('berhasil')) { ?>
         <div class="alert alert-success" role="alert">
-            Pesanan Berhasil disetujui, silahkan balas chat yang telah masuk
+            <!-- Pesanan Berhasil disetujui, silahkan balas chat yang telah masuk -->
+            Pesanan Berhasil disetujui
         </div>
     <?php } ?>
 
@@ -62,6 +63,7 @@
                                         <th>Jumlah dibeli</th>
                                         <th>Total Harga</th>
                                         <th>Alamat / Lokasi COD</th>
+                                        <th>Nomor</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -77,6 +79,7 @@
                                             <td><?= $data['jumlah']; ?></td>
                                             <td><?= $data['total']; ?></td>
                                             <td><?= $data['lokasi']; ?></td>
+                                            <td><?= $data['nomor']; ?></td>
                                             <td>
                                                 <?php if ($data['status'] == 'Setuju') { ?>
                                                     <a href="#" class="btn btn-success">Setuju</a>

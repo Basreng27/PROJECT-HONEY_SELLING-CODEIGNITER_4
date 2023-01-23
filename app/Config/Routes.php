@@ -33,6 +33,7 @@ $routes->get('/admin-pesanan', 'Admin\Admins::pesanan');
 $routes->post('/tambah-product', 'Admin\Product::prosesTambahProduct');
 $routes->post('/update-product', 'Admin\Product::prosesUpdateProduct');
 $routes->post('/tambah-khasiat', 'Admin\Product::prosesTambahKhasiat');
+$routes->get('/detail/(:num)', 'User\Users::detail/$1');
 // $routes->delete('/delete-product/(:any)', 'Admin\Product::deleteProduct/$1');
 $routes->post('/delete-product', 'Admin\Product::deleteProduct');
 // review

@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Web Penjualan Madu</title>
     <!-- CSS files -->
-    <link href="assets/users/css/tabler.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-flags.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-payments.min.css" rel="stylesheet" />
-    <link href="assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
-    <link href="assets/users/css/demo.min.css" rel="stylesheet" />
-    <link href="assets/users/css/demo.css" rel="stylesheet" />
-    <!-- <link href="assets/users/css/font-awesome.min.css" rel="stylesheet" /> -->
+    <link href="<?= base_url() ?>/assets/users/css/tabler.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-flags.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-payments.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/tabler-vendors.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/demo.min.css" rel="stylesheet" />
+    <link href="<?= base_url() ?>/assets/users/css/demo.css" rel="stylesheet" />
+    <!-- <link href="<?= base_url() ?>/assets/users/css/font-awesome.min.css" rel="stylesheet" /> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
     <script></script>
@@ -26,7 +26,7 @@
 
                 <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
                     <a href=".">
-                        <img src="set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                        <img src="<?= base_url() ?>/set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
                     </a>
                 </h1>
 
@@ -199,7 +199,7 @@
                     <div class="row justify-content-around">
                         <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
                             <br>
-                            <img src="set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+                            <img src="<?= base_url() ?>/set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
                         </div>
                         <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
                         </div>
@@ -235,13 +235,13 @@
     </div>
 
     <!-- Libs JS -->
-    <script src="assets/users/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="assets/users/libs/jsvectormap/dist/js/jsvectormap.min.js"></script>
-    <script src="assets/users/libs/jsvectormap/dist/maps/world.js"></script>
-    <script src="assets/users/libs/jsvectormap/dist/maps/world-merc.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/jsvectormap/dist/js/jsvectormap.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/jsvectormap/dist/maps/world.js"></script>
+    <script src="<?= base_url() ?>/assets/users/libs/jsvectormap/dist/maps/world-merc.js"></script>
     <!-- Tabler Core -->
-    <script src="assets/users/js/tabler.min.js"></script>
-    <script src="assets/users/js/demo.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/js/tabler.min.js"></script>
+    <script src="<?= base_url() ?>/assets/users/js/demo.min.js"></script>
 </body>
 
 </html>

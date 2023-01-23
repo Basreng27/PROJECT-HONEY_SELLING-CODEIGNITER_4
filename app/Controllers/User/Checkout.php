@@ -45,6 +45,7 @@ class Checkout extends BaseController
         // $jumlah = $this->request->getVar('jumlah');
         // $total = $this->request->getVar('total');
         $lokasi = $this->request->getVar('lokasi');
+        $nomor = $this->request->getVar('nomor');
 
         $no = $this->No_waModel->find(1);
 
@@ -52,6 +53,7 @@ class Checkout extends BaseController
             'id_user' => $id_user,
             'id_keranjang' => $id_keranjang,
             'lokasi' => $lokasi,
+            'nomor' => $nomor,
             'status' => 'Menunggu'
         ]);
 
@@ -60,7 +62,7 @@ class Checkout extends BaseController
             'status_keranjang' => 1
         ]);
 
-        return redirect()->to('/keranjang');
+        return redirect()->to('/terimakasih');
         // return redirect()->to('https://api.whatsapp.com/send?phone=' . $no['no_wa'] . '&text=Halo%20Admin%20Saya%20Mau%20Order%20Product%20' . $nama_madu . '%0ADengan%20Kode%20:%20' . $id_keranjang . '%0AAtas%20Nama%20:%20' . $nama . '%0ALokasi%20Pengiriman%20/%20Alamat%20:%20' . $lokasi . '%0ATerimakasih');
     }
 }

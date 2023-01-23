@@ -112,6 +112,12 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Nomor Yang Dapat Dihubungi</label>
+                            <input type="text" class="form-control" name="nomor" required>
+                        </div>
+
+
+                        <div class="mb-3">
                             <label class="form-label">Alamat</label>
                             <textarea class="form-control <?= ($validation->hasError('lokasi')) ? 'is-invalid' : ''; ?>" name="lokasi" rows="3"><?= old('lokasi'); ?></textarea>
                             <div class="invalid-feedback"><?= $validation->getError('lokasi'); ?></div>

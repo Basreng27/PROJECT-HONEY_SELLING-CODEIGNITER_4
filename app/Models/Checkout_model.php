@@ -9,7 +9,7 @@ class Checkout_model extends Model
     protected $table = 'checkout';
     protected $primaryKey = 'id_checkout';
     protected $useTimestamps = false;
-    protected $allowedFields = ['id_keranjang', 'id_user', 'lokasi', 'status', 'keterangan'];
+    protected $allowedFields = ['id_keranjang', 'id_user', 'lokasi', 'status', 'keterangan', 'nomor'];
 
     public function getCheckout()
     {

@@ -44,7 +44,7 @@
                     <div class="card">
                         <div class="card-img-top img-responsive img-responsive-21x9" style="background-image: url(products/<?= $product['image']; ?>)"></div>
                         <div class="card-body">
-                            <h3 class="card-title"><?= $product['nama_madu']; ?></h3>
+                            <h3 class="card-title"><a href="/detail/<?= $product['id_madu']; ?>"><?= $product['nama_madu']; ?></a></h3>
                             <p class="text-muted"><?= $product['deskripsi']; ?></p>
                             <p>
                                 <?php for ($i = 0; $i < 5; $i++) {
@@ -57,7 +57,7 @@
                             </p>
                         </div>
                         <div class="card-footer">
-                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                            <!-- <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $product['id_madu']; ?>">+ Keranjang</a>
                             <?php } else { ?>
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">+ Keranjang</a>
@@ -65,7 +65,7 @@
                             <br>
                             <br>
                             <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#komen<?= $product['id_madu']; ?>">Komentar</a>
-                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#khasiat<?= $product['id_madu']; ?>">Khasiat</a>
+                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#khasiat<?= $product['id_madu']; ?>">Khasiat</a> -->
                         </div>
                     </div>
                 </div>
