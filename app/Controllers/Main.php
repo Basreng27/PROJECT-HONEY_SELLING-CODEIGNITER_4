@@ -6,6 +6,7 @@ use App\Models\Product_model;
 use App\Models\Review_model;
 use App\Models\Set_dashboard_model;
 use App\Models\Rating_model;
+use App\Models\Checkout_model;
 
 class Main extends BaseController
 {
@@ -13,6 +14,7 @@ class Main extends BaseController
     protected $ReviewModel;
     protected $Set_dashboardModel;
     protected $RatingModel;
+    protected $CheckoutModel;
 
     public function __construct()
     {
@@ -20,15 +22,16 @@ class Main extends BaseController
         $this->ReviewModel = new Review_model();
         $this->Set_dashboardModel = new Set_dashboard_model();
         $this->RatingModel = new Rating_model();
+        $this->CheckoutModel = new Checkout_model();
     }
 
     public function index()
     {
         $data = [
             'data_reviews' => $this->ReviewModel->findAll(),
+            'best_product' => $this->RatingModel->bestProduct(),
             'set' => $this->Set_dashboardModel->find(1)
         ];
-
         return view('Pages/User/home', $data);
     }
 

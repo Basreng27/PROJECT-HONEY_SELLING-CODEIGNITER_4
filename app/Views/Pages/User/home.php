@@ -37,6 +37,32 @@
                 </div>
             </div>
         </div>
+        <br><br>
+        <div class="row row-cards">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Best Product</h2>
+                        <div id="carousel-default" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <img style="display: flex;justify-content: center;align-items: center;" src="<?= base_url() ?>/products/<?= $best_product[0]['image']; ?>" alt="Not Found">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <h1><?= $best_product[0]['deskripsi']; ?></h1>
+                                        <br>
+                                        <p>Harga : <?= $best_product[0]['harga']; ?></p>
+                                        <p>Khasiat : </p>
+                                        <?= $best_product[0]['isi_khasiat']; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <?= $this->endSection(); ?>

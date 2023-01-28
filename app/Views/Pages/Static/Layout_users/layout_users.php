@@ -175,25 +175,6 @@
 
             <?= $this->renderSection('content_user'); ?>
 
-            <!-- <footer class="footer footer-transparent d-print-none">
-                <div class="container-xl">
-                    <div class="row text-center align-items-center flex-row-reverse">
-
-                        <div class="col-lg-auto ms-lg-auto">
-                        </div>
-
-                        <div class="col-12 col-lg-auto mt-3 mt-lg-0">
-                            <ul class="list-inline list-inline-dots mb-0">
-                                <li class="list-inline-item">
-                                    Copyright &copy; RWM 2022
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </footer> -->
-
             <footer class="bg-one">
                 <div class="atas-footer" style="background-color: white;">
                     <div class="row justify-content-around">
@@ -208,19 +189,15 @@
                     <div class="row justify-content-around">
                         <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
                             <h3 style="color: black;">
-                                <p style="color: black;">Madu adalah subtansi makanan manis dan kental yang dibuat oleh lebah madu dan beberapa serangga lain. Lebah menghasilkan madu dari sekresi gula tumbuhan (nektar bunga) atau dari sekresi serangga lain (seperti honeydew atau madu serangga). Madu terbentuk melalui regurgitasi, aktivitas enzimatik, dan penguapan air. Lebah menyimpan madu dalam struktur lilin yang disebut sarang lebah.</p>
+                                Madu adalah subtansi makanan manis dan kental yang dibuat oleh lebah madu dan beberapa serangga lain.
+                                Lebah menghasilkan madu dari sekresi gula tumbuhan (nektar bunga) atau dari sekresi serangga lain (seperti honeydew atau madu serangga).
+                                Madu terbentuk melalui regurgitasi, aktivitas enzimatik, dan penguapan air.
+                                Lebah menyimpan madu dalam struktur lilin yang disebut sarang lebah
                         </div>
 
                         <div class="col-lg-4 col-md-6">
                             <h3 style="color: black;">Kontak Kami</h3>
-                            <p style="color: black;">Jual Madu<br>
-                                <a href="https://api.whatsapp.com/send?phone=<?= $no['no_wa'] ?>" target="_blank">Whatsapp <?= $no['no_wa'] ?></a></br>
-                                <!-- <a href="https://www.linkedin.com/company/pt.-solmit-bangun-indonesia/mycompany/" target="_blank"><i class="tf-ion-social-linkedin"></i> Solmit Consulting</a></br> -->
-                                <!-- <a href="https://www.facebook.com/solmitdotcom/"><i class="tf-ion-social-facebook" target="_blank"></i> PT Solmit Bangun Indonesia</a></br>
-                                <a href="https://www.instagram.com/beeandants/"><i class="tf-ion-social-instagram" target="_blank"></i> Solmit Bangun Indonesia</a></br>
-                                <a href="https://www.youtube.com/c/SOLMITACADEMY/featured?app=desktop" target="_blank"><i class="tf-ion-social-youtube"></i> Solmit Academy</a></br>
-                                <i class="tf-ion-android-mail"></i> info@solmit.com</br> -->
-                            </p>
+                            <a href="https://api.whatsapp.com/send?phone=<?= $no['no_wa'] ?>" target="_blank"><?= $no['no_wa'] ?></a></br>
                         </div>
                     </div>
                 </div>

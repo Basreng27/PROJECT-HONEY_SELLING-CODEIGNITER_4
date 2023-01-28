@@ -35,19 +35,24 @@
                     <div class="card-body">
                         <div id="carousel-default" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <img style="display: flex;justify-content: center;align-items: center;" src="<?= base_url() ?>/products/<?= $madu['image']; ?>" alt="Not Found">
-                                <br>
-                                <h1><?= $madu['deskripsi']; ?></h1>
-                                <br>
-                                <p>Harga : <?= $madu['harga']; ?></p>
-                                <p>Khasiat : </p>
-                                <?= $madu['isi_khasiat']; ?>
-                                <br>
-                                <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
-                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $madu['id_madu']; ?>">+ Keranjang</a>
-                                <?php } else { ?>
-                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">+ Keranjang</a>
-                                <?php } ?>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <img style="display: flex;justify-content: center;align-items: center;" src="<?= base_url() ?>/products/<?= $madu['image']; ?>" alt="Not Found">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <h1><?= $madu['deskripsi']; ?></h1>
+                                        <br>
+                                        <p>Harga : <?= $madu['harga']; ?></p>
+                                        <p>Khasiat : </p>
+                                        <?= $madu['isi_khasiat']; ?>
+                                    </div>
+                                    <br>
+                                    <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $madu['id_madu']; ?>">+ Keranjang</a>
+                                    <?php } else { ?>
+                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">+ Keranjang</a>
+                                    <?php } ?>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -49,4 +49,11 @@ class Rating_model extends Model
         $this->where(['id_madu' => $id_madu]);
         return $this->findAll();
     }
+
+    public function bestProduct()
+    {
+        $this->join('product', 'rating.id_madu = product.id_madu', 'left');
+        $this->orderBy('rating.id_madu', 'desc');
+        return $this->find();
+    }
 }

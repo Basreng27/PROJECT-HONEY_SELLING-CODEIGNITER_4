@@ -55,16 +55,17 @@
                                 <?php }
                                 } ?>
                             </p>
+                            <p style="text-align: right;">Rp.<?= $product['harga']; ?>,-</p>
                         </div>
                         <div class="card-footer">
-                            <!-- <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
+                            <?php if (session()->get('stat') == 'login-admin' || session()->get('stat') == 'login-user') { ?>
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-keranjang<?= $product['id_madu']; ?>">+ Keranjang</a>
                             <?php } else { ?>
                                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-belum-login">+ Keranjang</a>
                             <?php } ?>
                             <br>
                             <br>
-                            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#komen<?= $product['id_madu']; ?>">Komentar</a>
+                            <!-- <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#komen<?= $product['id_madu']; ?>">Komentar</a>
                             <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#khasiat<?= $product['id_madu']; ?>">Khasiat</a> -->
                         </div>
                     </div>
