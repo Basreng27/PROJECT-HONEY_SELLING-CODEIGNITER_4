@@ -180,7 +180,6 @@
                     <div class="row justify-content-around">
                         <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
                             <br>
-                            <img src="<?= base_url() ?>/set_admin/<?= $set['logo']; ?>" alt="logo" width="110" height="32" alt="Tabler" class="navbar-brand-image">
                         </div>
                         <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
                         </div>
@@ -188,11 +187,7 @@
                     <br><br>
                     <div class="row justify-content-around">
                         <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-                            <h3 style="color: black;">
-                                Madu adalah subtansi makanan manis dan kental yang dibuat oleh lebah madu dan beberapa serangga lain.
-                                Lebah menghasilkan madu dari sekresi gula tumbuhan (nektar bunga) atau dari sekresi serangga lain (seperti honeydew atau madu serangga).
-                                Madu terbentuk melalui regurgitasi, aktivitas enzimatik, dan penguapan air.
-                                Lebah menyimpan madu dalam struktur lilin yang disebut sarang lebah
+                            <img src="<?= base_url() ?>/set_admin/<?= $set['logo']; ?>" alt="logo" alt="Tabler" class="navbar-brand-image">
                         </div>
 
                         <div class="col-lg-4 col-md-6">

@@ -7,6 +7,7 @@ use App\Models\Review_model;
 use App\Models\Set_dashboard_model;
 use App\Models\Rating_model;
 use App\Models\Checkout_model;
+use App\Models\Best_seller_model;
 
 class Main extends BaseController
 {
@@ -15,6 +16,7 @@ class Main extends BaseController
     protected $Set_dashboardModel;
     protected $RatingModel;
     protected $CheckoutModel;
+    protected $BestSellerModel;
 
     public function __construct()
     {
@@ -23,15 +25,20 @@ class Main extends BaseController
         $this->Set_dashboardModel = new Set_dashboard_model();
         $this->RatingModel = new Rating_model();
         $this->CheckoutModel = new Checkout_model();
+        $this->BestSellerModel = new Best_seller_model();
     }
 
     public function index()
     {
+        $best_seller = $this->BestSellerModel->bestSeller();
+
         $data = [
             'data_reviews' => $this->ReviewModel->findAll(),
             'best_product' => $this->RatingModel->bestProduct(),
+            'best_seller' => $this->ProductModel->find($best_seller[0]['id_madu']),
             'set' => $this->Set_dashboardModel->find(1)
         ];
+        // dd($data['best_seller']);
         return view('Pages/User/home', $data);
     }
 

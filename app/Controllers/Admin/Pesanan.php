@@ -7,18 +7,21 @@ use App\Controllers\BaseController;
 use App\Models\Checkout_model;
 use App\Models\Keranjang_model;
 use App\Models\Product_model;
+use App\Models\Best_seller_model;
 
 class Pesanan extends BaseController
 {
     protected $CheckoutModel;
     protected $KeranjangModel;
     protected $ProductModel;
+    protected $BestSellerModel;
 
     public function __construct()
     {
         $this->CheckoutModel = new Checkout_model();
         $this->KeranjangModel = new Keranjang_model();
         $this->ProductModel = new Product_model();
+        $this->BestSellerModel = new Best_seller_model();
     }
 
     public function pesananSetuju($id_checkout)
@@ -42,6 +45,10 @@ class Pesanan extends BaseController
         $this->CheckoutModel->save([
             'id_checkout' => $id_checkout,
             'status' => 'Setuju'
+        ]);
+
+        $this->BestSellerModel->save([
+            'id_madu' => $keranjang['id_madu'],
         ]);
 
         session()->setFlashdata('berhasil', 'Data berhasil ditambahkan');
