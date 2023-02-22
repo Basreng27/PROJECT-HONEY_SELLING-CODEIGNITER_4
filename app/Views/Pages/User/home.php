@@ -24,11 +24,11 @@
                         <div id="carousel-default" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" alt="" src="set_admin/<?= $set['logo']; ?>" height="300px" width="250px">
+                                    <img class="d-block" alt="" src="set_admin/<?= $set['logo']; ?>" style="width: 400px; height: 300px; display: blok; margin: auto;">
                                 </div>
                                 <?php foreach ($data_reviews as $review) : ?>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" alt="" src="product_review/<?= $review['image_review']; ?>" height="300px" width="250px">
+                                        <img class="d-block" alt="" src="product_review/<?= $review['image_review']; ?>" style="width: 400px; height: 300px; display: blok; margin: auto;">
                                     </div>
                                 <?php endforeach ?>
                             </div>
@@ -46,18 +46,22 @@
                             <h2>Best Seller</h2>
                             <div id="carousel-default" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <img style="display: flex;justify-content: center;align-items: center;" src="<?= base_url() ?>/products/<?= $best_seller['image']; ?>" alt="Not Found">
+                                    <?php foreach ($best_seller as $best) { ?>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6">
+                                                <img style="display: flex;justify-content: center;align-items: center;" src="<?= base_url() ?>/products/<?= $best['image']; ?>" alt="Not Found">
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <h1><?= $best['deskripsi']; ?></h1>
+                                                <br>
+                                                <p>Harga : <?= $best['harga']; ?></p>
+                                                <p>Khasiat : </p>
+                                                <?= $best['isi_khasiat']; ?>
+                                            </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <h1><?= $best_seller['deskripsi']; ?></h1>
-                                            <br>
-                                            <p>Harga : <?= $best_seller['harga']; ?></p>
-                                            <p>Khasiat : </p>
-                                            <?= $best_seller['isi_khasiat']; ?>
-                                        </div>
-                                    </div>
+                                        <br>
+                                        <hr><br>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

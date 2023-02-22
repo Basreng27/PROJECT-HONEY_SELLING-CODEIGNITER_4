@@ -13,11 +13,12 @@ class Best_seller_model extends Model
 
     public function bestSeller()
     {
-        $this->select('id_madu, count(*) as jumlah');
-        $this->groupBy('id_madu');
+        $this->select('best_seller.id_madu, count(*) as jumlah, product.image, product.harga, product.isi_khasiat, product.deskripsi');
+        $this->groupBy('best_seller.id_madu');
         $this->orderBy('jumlah', 'desc');
-        $this->limit(1);
+        $this->join('product', 'best_seller.id_madu = product.id_madu', 'left');
+        $this->limit(3);
 
-        return $this->find();
+        return $this->findAll();
     }
 }

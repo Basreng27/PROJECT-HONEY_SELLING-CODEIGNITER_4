@@ -35,10 +35,11 @@ class Main extends BaseController
         $data = [
             'data_reviews' => $this->ReviewModel->findAll(),
             'best_product' => $this->RatingModel->bestProduct(),
-            'best_seller' => $this->ProductModel->find($best_seller[0]['id_madu']),
+            // 'best_seller' => $this->ProductModel->find($best_seller[0]['id_madu']),
+            'best_seller' => $best_seller,
             'set' => $this->Set_dashboardModel->find(1)
         ];
-        // dd($data['best_seller']);
+
         return view('Pages/User/home', $data);
     }
 
